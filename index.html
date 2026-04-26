@@ -361,28 +361,22 @@
     statusBar.textContent = '';
 
     try {
-      const response = await fetch('https://formspree.io/f/mzdywqzy', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify({
-          nome: nome,
-          cpf: cpf,
-          presenca: presenca.value === 'sim' ? 'SIM – Vai comparecer 🎉' : 'NÃO – Não vai conseguir ir'
-        })
-      });
-      const data = await response.json();
+      const formData = new FormData();
+      formData.append('nome', nome);
+      formData.append('cpf', cpf);
+      formData.append('presenca', presenca.value === 'sim' ? 'SIM – Vai comparecer 🎉' : 'NÃO – Não vai conseguir ir');
 
-      if(data.ok) {
-        document.getElementById('form-body').style.display = 'none';
-        document.getElementById('success-box').style.display = 'block';
-        if(presenca.value === 'nao') {
-          document.getElementById('success-title').textContent = 'Recebemos sua resposta!';
-          document.getElementById('success-msg').textContent = 'Que pena que não vai poder ir, mas obrigado por avisar! Sentiremos sua falta! 💙';
-        }
-      } else {
-        statusBar.textContent = 'Erro ao enviar. Tente novamente.';
-        btn.disabled = false;
-        btn.textContent = 'Confirmar presença';
+      await fetch('https://script.google.com/macros/s/AKfycbzD1GlyTszvEXlq_aPAtw3dsSShr_QW3-46nx9GEqaI-pNKRzsZpx8pITv11-p_cOPS/exec', {
+        method: 'POST',
+        mode: 'no-cors',
+        body: formData
+      });
+
+      document.getElementById('form-body').style.display = 'none';
+      document.getElementById('success-box').style.display = 'block';
+      if(presenca.value === 'nao') {
+        document.getElementById('success-title').textContent = 'Recebemos sua resposta!';
+        document.getElementById('success-msg').textContent = 'Que pena que não vai poder ir, mas obrigado por avisar! Sentiremos sua falta! 💙';
       }
     } catch(err) {
       statusBar.textContent = 'Erro de conexão. Tente novamente.';
