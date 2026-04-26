@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Chá de Casa Nova – Bianca & Gabriel</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -15,9 +14,9 @@
       display: flex;
       align-items: flex-start;
       justify-content: center;
-      padding: 2rem 1rem 3rem;
+      padding: 2rem 1rem 4rem;
     }
-    .page { width: 100%; max-width: 560px; }
+    .wrapper { width: 100%; max-width: 620px; }
     .hero {
       background: linear-gradient(135deg, #2d5a27 0%, #4a7c3f 50%, #1a3d16 100%);
       border-radius: 16px;
@@ -26,92 +25,232 @@
       position: relative;
       overflow: hidden;
       margin-bottom: 1.5rem;
+      box-shadow: 0 8px 32px rgba(45,90,39,0.25);
     }
-    .hero::before { content:''; position:absolute; top:-40px; right:-40px; width:180px; height:180px; background:rgba(255,255,255,0.05); border-radius:50%; }
-    .hero::after  { content:''; position:absolute; bottom:-20px; left:-20px; width:120px; height:120px; background:rgba(255,255,255,0.04); border-radius:50%; }
-    .hero-tag { font-size:11px; letter-spacing:3px; text-transform:uppercase; color:rgba(255,255,255,0.6); margin-bottom:0.5rem; }
-    .hero-title { font-family:'Playfair Display',serif; font-size:26px; font-weight:700; line-height:1.3; margin-bottom:1rem; color:#fff; }
-    .hero-desc { font-size:14px; line-height:1.75; color:rgba(255,255,255,0.85); margin-bottom:1.5rem; }
-    .hero-info { display:flex; flex-direction:column; gap:8px; border-top:1px solid rgba(255,255,255,0.15); padding-top:1.25rem; }
-    .hero-info-row { display:flex; align-items:flex-start; gap:10px; font-size:13px; color:rgba(255,255,255,0.9); line-height:1.5; }
-    .hero-info-row span:first-child { flex-shrink:0; margin-top:1px; }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -40px; right: -40px;
+      width: 180px; height: 180px;
+      background: rgba(255,255,255,0.06);
+      border-radius: 50%;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -30px; left: -20px;
+      width: 120px; height: 120px;
+      background: rgba(255,255,255,0.04);
+      border-radius: 50%;
+    }
+    .hero-tag {
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 0.5rem;
+    }
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 26px;
+      font-weight: 700;
+      line-height: 1.3;
+      margin-bottom: 1rem;
+      color: #fff;
+    }
+    .hero-desc {
+      font-size: 14px;
+      line-height: 1.75;
+      color: rgba(255,255,255,0.85);
+      margin-bottom: 1.5rem;
+    }
+    .hero-info {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      border-top: 1px solid rgba(255,255,255,0.15);
+      padding-top: 1.25rem;
+    }
+    .hero-info-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 13.5px;
+      color: rgba(255,255,255,0.9);
+      line-height: 1.5;
+    }
+    .icon { flex-shrink: 0; margin-top: 1px; }
     .waze-btn {
-      display:inline-flex; align-items:center; gap:8px; margin-top:1.25rem;
-      background:rgba(255,255,255,0.12); border:1px solid rgba(255,255,255,0.25);
-      color:#fff; font-family:'Lato',sans-serif; font-size:13px; font-weight:700;
-      padding:9px 18px; border-radius:50px; cursor:pointer; text-decoration:none;
-      transition:background 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 1.25rem;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.3);
+      color: #fff;
+      font-family: 'Lato', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      padding: 9px 18px;
+      border-radius: 50px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s;
     }
-    .waze-btn:hover { background:rgba(255,255,255,0.22); }
+    .waze-btn:hover { background: rgba(255,255,255,0.22); }
     .form-card {
-      background:#fff; border:1px solid #e8e4dc; border-radius:16px;
-      padding:2rem; box-shadow:0 2px 16px rgba(0,0,0,0.06);
+      background: #fff;
+      border: 1px solid #e8e4dd;
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
     }
-    .form-title { font-family:'Playfair Display',serif; font-size:20px; font-weight:700; color:#1a1a1a; margin-bottom:0.25rem; }
-    .form-subtitle { font-size:13px; color:#888; margin-bottom:1.5rem; }
-    .field { margin-bottom:1.1rem; }
-    label.field-label { display:block; font-size:11px; font-weight:700; letter-spacing:0.6px; text-transform:uppercase; color:#888; margin-bottom:6px; }
+    .form-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: #1a1a1a;
+      margin-bottom: 0.25rem;
+    }
+    .form-subtitle {
+      font-size: 13.5px;
+      color: #888;
+      margin-bottom: 1.75rem;
+    }
+    .field { margin-bottom: 1.25rem; }
+    label.field-label {
+      display: block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      color: #666;
+      margin-bottom: 7px;
+    }
     input[type="text"] {
-      width:100%; height:42px; padding:0 14px;
-      border:1px solid #ddd; border-radius:8px;
-      font-family:'Lato',sans-serif; font-size:14px; color:#1a1a1a;
-      background:#fff; outline:none; transition:border-color 0.2s, box-shadow 0.2s;
+      width: 100%;
+      height: 44px;
+      padding: 0 14px;
+      border: 1.5px solid #ddd;
+      border-radius: 8px;
+      font-family: 'Lato', sans-serif;
+      font-size: 15px;
+      color: #1a1a1a;
+      background: #fff;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      outline: none;
     }
-    input[type="text"]:focus { border-color:#2d5a27; box-shadow:0 0 0 3px rgba(45,90,39,0.1); }
-    .divider { height:1px; background:#f0ede8; margin:1.25rem 0; }
-    .radio-group { display:flex; gap:10px; flex-wrap:wrap; }
+    input[type="text"]:focus {
+      border-color: #2d5a27;
+      box-shadow: 0 0 0 3px rgba(45,90,39,0.1);
+    }
+    .divider {
+      height: 1px;
+      background: #f0ede8;
+      margin: 1.5rem 0;
+    }
+    .radio-group { display: flex; gap: 10px; flex-wrap: wrap; }
     .radio-option {
-      flex:1; min-width:140px; border:1px solid #ddd; border-radius:8px;
-      padding:11px 14px; cursor:pointer; display:flex; align-items:center;
-      gap:10px; font-size:14px; color:#1a1a1a;
-      transition:border-color 0.2s, background 0.2s; user-select:none;
+      flex: 1;
+      min-width: 140px;
+      border: 1.5px solid #ddd;
+      border-radius: 10px;
+      padding: 12px 16px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      color: #1a1a1a;
+      transition: border-color 0.2s, background 0.2s;
+      user-select: none;
     }
-    .radio-option input { display:none; }
+    .radio-option input { display: none; }
     .radio-dot {
-      width:16px; height:16px; border-radius:50%; border:1.5px solid #ccc;
-      flex-shrink:0; display:flex; align-items:center; justify-content:center;
-      transition:all 0.2s;
+      width: 18px; height: 18px;
+      border-radius: 50%;
+      border: 2px solid #ccc;
+      flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.2s;
     }
-    .radio-dot::after { content:''; width:6px; height:6px; border-radius:50%; background:#fff; display:none; }
-    .radio-option.selected { border-color:#2d5a27; background:rgba(45,90,39,0.04); }
-    .radio-option.selected .radio-dot { border-color:#2d5a27; background:#2d5a27; }
-    .radio-option.selected .radio-dot::after { display:block; }
-    .radio-option.no-opt.selected { border-color:#c0392b; background:rgba(192,57,43,0.04); }
-    .radio-option.no-opt.selected .radio-dot { border-color:#c0392b; background:#c0392b; }
+    .radio-dot::after {
+      content: '';
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: #fff;
+      display: none;
+    }
+    .radio-option.selected { border-color: #2d5a27; background: rgba(45,90,39,0.05); }
+    .radio-option.selected .radio-dot { border-color: #2d5a27; background: #2d5a27; }
+    .radio-option.selected .radio-dot::after { display: block; }
+    .radio-option.no-opt.selected { border-color: #c0392b; background: rgba(192,57,43,0.05); }
+    .radio-option.no-opt.selected .radio-dot { border-color: #c0392b; background: #c0392b; }
     .submit-btn {
-      width:100%; height:48px; background:#2d5a27; color:#fff;
-      border:none; border-radius:8px; font-family:'Lato',sans-serif;
-      font-size:15px; font-weight:700; cursor:pointer; margin-top:1.5rem;
-      letter-spacing:0.5px; transition:background 0.2s, transform 0.1s;
+      width: 100%;
+      height: 48px;
+      background: #2d5a27;
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      font-family: 'Lato', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      margin-top: 1.5rem;
+      letter-spacing: 0.5px;
+      transition: background 0.2s, transform 0.1s;
     }
-    .submit-btn:hover { background:#1e4019; }
-    .submit-btn:active { transform:scale(0.99); }
-    .submit-btn:disabled { background:#ccc; cursor:not-allowed; transform:none; }
-    .error-msg { font-size:12px; color:#c0392b; margin-top:5px; display:none; }
-    #status-bar { font-size:13px; color:#888; text-align:center; margin-top:10px; min-height:18px; }
-    .success-box { display:none; text-align:center; padding:2rem 1rem; }
-    .success-icon { width:64px; height:64px; border-radius:50%; background:rgba(45,90,39,0.1); display:flex; align-items:center; justify-content:center; font-size:30px; margin:0 auto 1rem; }
-    .success-title { font-family:'Playfair Display',serif; font-size:22px; color:#1a1a1a; margin-bottom:0.5rem; }
-    .success-msg { font-size:14px; color:#888; line-height:1.7; }
-    @media (max-width:480px) {
-      .hero { padding:2rem 1.5rem 1.5rem; }
-      .form-card { padding:1.5rem; }
-      .hero-title { font-size:22px; }
+    .submit-btn:hover { background: #1e4019; }
+    .submit-btn:active { transform: scale(0.99); }
+    .submit-btn:disabled { background: #ccc; color: #888; cursor: not-allowed; transform: none; }
+    .error-msg { font-size: 12px; color: #c0392b; margin-top: 5px; display: none; }
+    #status-bar { font-size: 13px; color: #888; text-align: center; margin-top: 10px; min-height: 18px; }
+    .success-box { display: none; text-align: center; padding: 2.5rem 1rem; }
+    .success-icon {
+      width: 64px; height: 64px;
+      border-radius: 50%;
+      background: rgba(45,90,39,0.1);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 28px;
+      margin: 0 auto 1.25rem;
+    }
+    .success-title { font-family: 'Playfair Display', serif; font-size: 22px; color: #1a1a1a; margin-bottom: 0.5rem; }
+    .success-msg { font-size: 14px; color: #666; line-height: 1.7; }
+    @media (max-width: 480px) {
+      .hero { padding: 2rem 1.25rem 1.5rem; }
+      .hero-title { font-size: 22px; }
+      .form-card { padding: 1.5rem; }
+      .radio-group { flex-direction: column; }
     }
   </style>
 </head>
 <body>
-<div class="page">
+<div class="wrapper">
   <div class="hero">
     <p class="hero-tag">Chá de Casa Nova</p>
     <h1 class="hero-title">Finalmente o nosso cantinho saiu! 🏠✨</h1>
-    <p class="hero-desc">E para não perder o costume, vamos inaugurar a casa nova do jeito que a gente mais gosta: com o pé direito, feijoada no prato e chopp gelado na mão! A gente não vê a hora de ver todo mundo reunido para dar aquela conferida no nosso novo lar (e ver se a Bianca e o Gabriel já aprenderam a ser donos de casa!).</p>
+    <p class="hero-desc">
+      E para não perder o costume, vamos inaugurar a casa nova do jeito que a gente mais gosta: com o pé direito, feijoada no prato e chopp gelado na mão! A gente não vê a hora de ver todo mundo reunido para dar aquela conferida no nosso novo lar (e ver se a Bianca e o Gabriel já aprenderam a ser donos de casa!).
+    </p>
     <div class="hero-info">
-      <div class="hero-info-row"><span>📍</span><span>R. Paulo Lício Rizzo, n° 161 – Centro, Osasco - SP, 06018-010 · Salão de Festas do Condomínio Aurum</span></div>
-      <div class="hero-info-row"><span>🗓️</span><span>06 de junho, a partir das 14h</span></div>
+      <div class="hero-info-row">
+        <span class="icon">📍</span>
+        <span>R. Paulo Lício Rizzo, n° 161 – Centro, Osasco - SP, 06018-010 · Salão de Festas do Condomínio Aurum</span>
+      </div>
+      <div class="hero-info-row">
+        <span class="icon">🗓️</span>
+        <span>06 de junho, a partir das 14h</span>
+      </div>
     </div>
-    <a class="waze-btn" href="https://waze.com/ul?q=R.+Paulo+Lício+Rizzo,+161,+Osasco" target="_blank">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="10" r="8" stroke="#fff" stroke-width="2"/><path d="M12 18v4M8 22h8" stroke="#fff" stroke-width="2" stroke-linecap="round"/><circle cx="9" cy="9" r="1.5" fill="#fff"/><circle cx="14" cy="9" r="1.5" fill="#fff"/><path d="M9 13c1 1 5 1 6 0" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/></svg>
+    <a class="waze-btn" href="https://ul.waze.com/ul?place=EkNSLiBQYXVsbyBMw61jaW8gUml6em8sIDE2MSAtIENlbnRybywgT3Nhc2NvIC0gU1AsIDA2MDE4LTAxMCwgQnJhemlsIjESLwoUChIJO385YQ3_zpQRznehPzHquXIQoQEqFAoSCfPXtAwN_86UEdccesvJSUtv&ll=-23.53886500%2C-46.77785510&navigate=yes&utm_campaign=default&utm_source=waze_website&utm_medium=lm_share_location" target="_blank">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="12" cy="10" r="8" stroke="#fff" stroke-width="2"/>
+        <path d="M12 18v4M8 22h8" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+        <circle cx="9" cy="9" r="1.5" fill="#fff"/>
+        <circle cx="14" cy="9" r="1.5" fill="#fff"/>
+        <path d="M9 13c1 1 5 1 6 0" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
       Abrir no Waze
     </a>
   </div>
@@ -120,28 +259,42 @@
     <div id="form-body">
       <p class="form-title">Confirme sua presença</p>
       <p class="form-subtitle">Preencha seus dados para garantir a liberação na portaria.</p>
+
       <div class="field">
         <label class="field-label" for="nome">Nome completo</label>
         <input type="text" id="nome" placeholder="Seu nome completo" autocomplete="name" />
         <p class="error-msg" id="err-nome">Por favor, informe seu nome.</p>
       </div>
+
       <div class="field">
         <label class="field-label" for="cpf">CPF</label>
         <input type="text" id="cpf" placeholder="000.000.000-00" maxlength="14" />
         <p class="error-msg" id="err-cpf">Informe um CPF válido.</p>
       </div>
+
       <div class="divider"></div>
+
       <div class="field">
         <label class="field-label">Você vai comparecer?</label>
         <div class="radio-group">
-          <label class="radio-option" id="opt-sim"><input type="radio" name="presenca" value="sim" /><span class="radio-dot"></span>Sim, vou lá! 🎉</label>
-          <label class="radio-option no-opt" id="opt-nao"><input type="radio" name="presenca" value="nao" /><span class="radio-dot"></span>Não vou conseguir ir</label>
+          <label class="radio-option" id="opt-sim">
+            <input type="radio" name="presenca" value="sim" />
+            <span class="radio-dot"></span>
+            Sim, vou lá! 🎉
+          </label>
+          <label class="radio-option no-opt" id="opt-nao">
+            <input type="radio" name="presenca" value="nao" />
+            <span class="radio-dot"></span>
+            Não vou conseguir ir
+          </label>
         </div>
         <p class="error-msg" id="err-presenca">Selecione uma opção.</p>
       </div>
+
       <button class="submit-btn" id="submit-btn" onclick="submitForm()">Confirmar presença</button>
       <p id="status-bar"></p>
     </div>
+
     <div class="success-box" id="success-box">
       <div class="success-icon">🎉</div>
       <p class="success-title" id="success-title">Presença confirmada!</p>
@@ -155,7 +308,7 @@
   cpfInput.addEventListener('input', function() {
     let v = this.value.replace(/\D/g,'');
     if(v.length > 11) v = v.slice(0,11);
-    if(v.length > 9)      v = v.replace(/(\d{3})(\d{3})(\d{3})(\d{1,2})/,'$1.$2.$3-$4');
+    if(v.length > 9) v = v.replace(/(\d{3})(\d{3})(\d{3})(\d{1,2})/,'$1.$2.$3-$4');
     else if(v.length > 6) v = v.replace(/(\d{3})(\d{3})(\d{1,3})/,'$1.$2.$3');
     else if(v.length > 3) v = v.replace(/(\d{3})(\d{1,3})/,'$1.$2');
     this.value = v;
@@ -172,11 +325,18 @@
 
   function validateCPF(cpf) {
     cpf = cpf.replace(/\D/g,'');
-    if(cpf.length !== 11 || /^(\d)\1{10}$/.test(cpf)) return false;
-    let s=0; for(let i=0;i<9;i++) s+=parseInt(cpf[i])*(10-i);
-    let r=(s*10)%11; if(r===10||r===11) r=0; if(r!==parseInt(cpf[9])) return false;
-    s=0; for(let i=0;i<10;i++) s+=parseInt(cpf[i])*(11-i);
-    r=(s*10)%11; if(r===10||r===11) r=0; return r===parseInt(cpf[10]);
+    if(cpf.length !== 11) return false;
+    if(/^(\d)\1{10}$/.test(cpf)) return false;
+    let s = 0;
+    for(let i=0;i<9;i++) s += parseInt(cpf[i]) * (10-i);
+    let r = (s*10) % 11;
+    if(r === 10 || r === 11) r = 0;
+    if(r !== parseInt(cpf[9])) return false;
+    s = 0;
+    for(let i=0;i<10;i++) s += parseInt(cpf[i]) * (11-i);
+    r = (s*10) % 11;
+    if(r === 10 || r === 11) r = 0;
+    return r === parseInt(cpf[10]);
   }
 
   async function submitForm() {
@@ -184,7 +344,11 @@
     const cpf  = document.getElementById('cpf').value.trim();
     const presenca = document.querySelector('input[name="presenca"]:checked');
     let valid = true;
-    ['err-nome','err-cpf','err-presenca'].forEach(id => { document.getElementById(id).style.display='none'; });
+
+    document.getElementById('err-nome').style.display = 'none';
+    document.getElementById('err-cpf').style.display = 'none';
+    document.getElementById('err-presenca').style.display = 'none';
+
     if(!nome)             { document.getElementById('err-nome').style.display='block'; valid=false; }
     if(!validateCPF(cpf)) { document.getElementById('err-cpf').style.display='block'; valid=false; }
     if(!presenca)         { document.getElementById('err-presenca').style.display='block'; valid=false; }
@@ -192,40 +356,38 @@
 
     const btn = document.getElementById('submit-btn');
     const statusBar = document.getElementById('status-bar');
-    btn.disabled = true; btn.textContent = 'Enviando...'; statusBar.textContent='';
+    btn.disabled = true;
+    btn.textContent = 'Enviando...';
+    statusBar.textContent = '';
 
     try {
-      const response = await fetch('https://api.anthropic.com/v1/messages', {
+      const response = await fetch('https://formspree.io/f/mzdywqzy', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
         body: JSON.stringify({
-          model: 'claude-sonnet-4-20250514',
-          max_tokens: 1000,
-          mcp_servers: [{ type:'url', url:'https://gmailmcp.googleapis.com/mcp/v1', name:'gmail-mcp' }],
-          system: 'Você é um assistente que envia e-mails de confirmação de presença usando Gmail. Após enviar, retorne APENAS o JSON: {"success": true}. Sem markdown, sem texto extra.',
-          messages: [{ role:'user', content:`Envie um e-mail para gabriel.zinni@gmail.com com:\nAssunto: Confirmação de Presença – Chá de Casa Nova\n\nCorpo:\nNova confirmação recebida!\n\nNome: ${nome}\nCPF: ${cpf}\nPresença: ${presenca.value === 'sim' ? 'SIM – Vai comparecer 🎉' : 'NÃO – Não vai conseguir ir'}\n\nEvento: Chá de Casa Nova – Bianca & Gabriel\nData: 06 de junho, a partir das 14h\nLocal: Condomínio Aurum – R. Paulo Lício Rizzo, 161, Osasco - SP\n\nApós enviar retorne: {"success": true}` }]
+          nome: nome,
+          cpf: cpf,
+          presenca: presenca.value === 'sim' ? 'SIM – Vai comparecer 🎉' : 'NÃO – Não vai conseguir ir'
         })
       });
       const data = await response.json();
-      const text = (data.content||[]).filter(b=>b.type==='text').map(b=>b.text).join('');
-      let parsed = { success: false };
-      try { parsed = JSON.parse(text.replace(/```json|```/g,'').trim()); }
-      catch(e) { if(text.includes('"success": true')||text.includes('"success":true')) parsed={success:true}; }
 
-      if(parsed.success) {
-        document.getElementById('form-body').style.display='none';
-        document.getElementById('success-box').style.display='block';
-        if(presenca.value==='nao') {
-          document.getElementById('success-title').textContent='Recebemos sua resposta!';
-          document.getElementById('success-msg').textContent='Que pena que não vai poder ir, mas obrigado por avisar! Sentiremos sua falta! 💙';
+      if(data.ok) {
+        document.getElementById('form-body').style.display = 'none';
+        document.getElementById('success-box').style.display = 'block';
+        if(presenca.value === 'nao') {
+          document.getElementById('success-title').textContent = 'Recebemos sua resposta!';
+          document.getElementById('success-msg').textContent = 'Que pena que não vai poder ir, mas obrigado por avisar! Sentiremos sua falta! 💙';
         }
       } else {
-        statusBar.textContent='Erro ao enviar. Tente novamente.';
-        btn.disabled=false; btn.textContent='Confirmar presença';
+        statusBar.textContent = 'Erro ao enviar. Tente novamente.';
+        btn.disabled = false;
+        btn.textContent = 'Confirmar presença';
       }
     } catch(err) {
-      statusBar.textContent='Erro de conexão. Tente novamente.';
-      btn.disabled=false; btn.textContent='Confirmar presença';
+      statusBar.textContent = 'Erro de conexão. Tente novamente.';
+      btn.disabled = false;
+      btn.textContent = 'Confirmar presença';
     }
   }
 </script>
